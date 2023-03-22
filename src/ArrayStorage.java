@@ -15,7 +15,7 @@ public class ArrayStorage {
     }
 
     void save(Resume r) {
-        //check if cell is not occupied (possible to omit) and write new instance
+        //check for OutOfBound and write new instance
         if (r == null) return;
         if (size < 10_000) {
             storage[size] = r;
