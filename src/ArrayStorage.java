@@ -4,6 +4,9 @@
 public class ArrayStorage {
     Resume[] storage = new Resume[10000];
 
+    //define static variable for resume quantity
+    private static int size = 0;
+
     void clear() {
         // do physical deletion of each instance in array
         for (Resume resume : storage) {
@@ -13,9 +16,11 @@ public class ArrayStorage {
 
     void save(Resume r) {
         //check if cell is not occupied (possible to omit) and write new instance
-        if (storage[size() + 1] == null) {
-            storage[size() + 1] = r;
-        }
+        if (r == null) return;
+        if (size < 10_000) {
+            storage[size] = r;
+            size++;
+        } else System.out.println("Storage array overloaded");
     }
 
     Resume get(String uuid) {
@@ -43,6 +48,6 @@ public class ArrayStorage {
     }
 
     int size() {
-        return 0;
+        return size;
     }
 }
