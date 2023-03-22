@@ -11,6 +11,7 @@ public class ArrayStorage {
         // do physical deletion of each instance in array
         for (Resume resume : storage) {
             resume = null;
+            size = 0;
         }
     }
 
