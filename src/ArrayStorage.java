@@ -5,12 +5,17 @@ public class ArrayStorage {
     Resume[] storage = new Resume[10000];
 
     void clear() {
+        // do physical deletion of each instance in array
         for (Resume resume : storage) {
             resume = null;
         }
     }
 
     void save(Resume r) {
+        //check if cell is not occupied (possible to omit) and write new instance
+        if (storage[size() + 1] == null) {
+            storage[size() + 1] = r;
+        }
     }
 
     Resume get(String uuid) {
