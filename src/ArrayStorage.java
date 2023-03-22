@@ -19,6 +19,12 @@ public class ArrayStorage {
     }
 
     Resume get(String uuid) {
+        // searching for uuid in array
+        for (int i = 0; i < this.size(); i++) {
+            if (uuid.equalsIgnoreCase(storage[i].uuid)) {
+                return storage[i];
+            }
+        }
         return null;
     }
 
