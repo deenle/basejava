@@ -33,7 +33,7 @@ public class ArrayStorage {
                 return storage[i];
             }
         }
-        System.out.printf("Current uuid: '%s' did not found", uuid);
+        System.out.printf("Current uuid: '%s' did not found \n", uuid);
         return null;
     }
 
@@ -52,7 +52,7 @@ public class ArrayStorage {
                     return;
                 }
             }
-            System.out.printf("Current uuid: '%s' did not found and was not deleted", uuid);
+            System.out.printf("Current uuid: '%s' did not found and was not deleted \n", uuid);
         } else System.out.println("Array is already empty");
     }
 
@@ -62,7 +62,7 @@ public class ArrayStorage {
     Resume[] getAll() {
         if (size == 0) {
             System.out.println("Array is empty");
-            return null;
+            return new Resume[0];
         } else {
             Resume[] resumes = new Resume[size];
             System.arraycopy(storage, 0, resumes, 0, resumes.length);
@@ -77,7 +77,7 @@ public class ArrayStorage {
     // dedicated method to check input uuid
     boolean uuidCheckOk(String uuid) {
         if (uuid == null || "".equals(uuid)) {
-            System.out.println("Please input uuid");
+            System.out.println("Please input uuid ");
             return false;
         }
         return true;
