@@ -26,10 +26,8 @@ public class ArrayStorage {
 
     Resume get(String uuid) {
         // searching for uuid in array
-        if (uuid == null || uuid.equals("")) {
-            System.out.println("Please input uuid");
-            return null;
-        }
+        if (!uuidCheckOk(uuid)) return null;
+
         for (int i = 0; i < this.size(); i++) {
             if (uuid.equalsIgnoreCase(storage[i].uuid)) {
                 return storage[i];
@@ -52,5 +50,14 @@ public class ArrayStorage {
 
     int size() {
         return size;
+    }
+
+    // dedicated method to check input uuid
+    boolean uuidCheckOk(String uuid) {
+        if (uuid == null || "".equals(uuid)) {
+            System.out.println("Please input uuid");
+            return false;
+        }
+        return true;
     }
 }
