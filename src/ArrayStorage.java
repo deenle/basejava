@@ -33,6 +33,7 @@ public class ArrayStorage {
                 return storage[i];
             }
         }
+        System.out.printf("Current uuid: '%s' did not found", uuid);
         return null;
     }
 
