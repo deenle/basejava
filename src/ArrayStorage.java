@@ -49,9 +49,10 @@ public class ArrayStorage {
                     }
                     size--;
                     return;
-                } else System.out.printf("Current uuid: '%s' did not found and was not deleted", uuid);
+                }
             }
-        }
+            System.out.printf("Current uuid: '%s' did not found and was not deleted", uuid);
+        } else System.out.println("Array is already empty");
     }
 
     /**
