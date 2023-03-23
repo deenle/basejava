@@ -60,9 +60,14 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     Resume[] getAll() {
-        Resume[] resumes = new Resume[size];
-        System.arraycopy(storage, 0, resumes, 0, resumes.length);
-        return resumes;
+        if (size == 0) {
+            System.out.println("Array is empty");
+            return null;
+        } else {
+            Resume[] resumes = new Resume[size];
+            System.arraycopy(storage, 0, resumes, 0, resumes.length);
+            return resumes;
+        }
     }
 
     int size() {
