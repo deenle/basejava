@@ -37,6 +37,21 @@ public class ArrayStorage {
     }
 
     void delete(String uuid) {
+        if (!uuidCheckOk(uuid)) return;
+        if (size > 0) {
+            for (int i = 0; i < size; i++) {
+                if (uuid.equalsIgnoreCase(storage[i].uuid)) {
+                    if (i == size - 1) {
+                        storage[i] = null;
+                    } else {
+                        storage[i] = storage[size - 1];
+                        storage[size - 1] = null;
+                    }
+                    size--;
+                    return;
+                } else System.out.printf("Current uuid: '%s' did not found and was not deleted", uuid);
+            }
+        }
     }
 
     /**
