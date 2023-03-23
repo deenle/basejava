@@ -4,13 +4,13 @@
 public class ArrayStorage {
     Resume[] storage = new Resume[10000];
 
-    //define static variable for resume quantity
-    private static int size = 0;
+    //define resume quantity
+    private static int size;
 
     void clear() {
         // do physical deletion of each instance in array
-        for (Resume resume : storage) {
-            resume = null;
+        for (int i = 0; i < size; i++) {
+            storage[i] = null;
         }
         size = 0;
     }
@@ -18,7 +18,7 @@ public class ArrayStorage {
     void save(Resume r) {
         //check for OutOfBound and write new instance
         if (r == null) return;
-        if (size < 10_000) {
+        if (size < storage.length) {
             storage[size] = r;
             size++;
         } else System.out.println("Storage array overloaded");
@@ -26,11 +26,11 @@ public class ArrayStorage {
 
     Resume get(String uuid) {
         // searching for uuid in array
-        if (!uuidCheckOk(uuid)) return null;
-
-        for (int i = 0; i < this.size(); i++) {
-            if (uuid.equalsIgnoreCase(storage[i].uuid)) {
-                return storage[i];
+        if (isUuidOk(uuid)) {
+            for (int i = 0; i < size; i++) {
+                if (uuid.equalsIgnoreCase(storage[i].uuid)) {
+                    return storage[i];
+                }
             }
         }
         System.out.printf("uuid '%s' not found \n", uuid);
@@ -38,16 +38,11 @@ public class ArrayStorage {
     }
 
     void delete(String uuid) {
-        if (!uuidCheckOk(uuid)) return;
-        if (size > 0) {
+        if (isUuidOk(uuid) && size > 0) {
             for (int i = 0; i < size; i++) {
                 if (uuid.equalsIgnoreCase(storage[i].uuid)) {
-                    if (i == size - 1) {
-                        storage[i] = null;
-                    } else {
-                        storage[i] = storage[size - 1];
-                        storage[size - 1] = null;
-                    }
+                    storage[i] = storage[size - 1];
+                    storage[size - 1] = null;
                     size--;
                     return;
                 }
@@ -63,11 +58,10 @@ public class ArrayStorage {
         if (size == 0) {
             System.out.println("Array is empty");
             return new Resume[0];
-        } else {
-            Resume[] resumes = new Resume[size];
-            System.arraycopy(storage, 0, resumes, 0, resumes.length);
-            return resumes;
         }
+        Resume[] resumes = new Resume[size];
+        System.arraycopy(storage, 0, resumes, 0, resumes.length);
+        return resumes;
     }
 
     int size() {
@@ -75,7 +69,7 @@ public class ArrayStorage {
     }
 
     // dedicated method to check input uuid
-    boolean uuidCheckOk(String uuid) {
+    boolean isUuidOk(String uuid) {
         if (uuid == null || "".equals(uuid)) {
             System.out.println("Please input uuid ");
             return false;
