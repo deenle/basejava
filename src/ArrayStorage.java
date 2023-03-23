@@ -26,7 +26,7 @@ public class ArrayStorage {
 
     Resume get(String uuid) {
         // searching for uuid in array
-        if (isUuidOk(uuid)) {
+        if (isUuidValid(uuid)) {
             for (int i = 0; i < size; i++) {
                 if (uuid.equalsIgnoreCase(storage[i].uuid)) {
                     return storage[i];
@@ -38,7 +38,7 @@ public class ArrayStorage {
     }
 
     void delete(String uuid) {
-        if (isUuidOk(uuid) && size > 0) {
+        if (isUuidValid(uuid) && size > 0) {
             for (int i = 0; i < size; i++) {
                 if (uuid.equalsIgnoreCase(storage[i].uuid)) {
                     storage[i] = storage[size - 1];
@@ -69,7 +69,7 @@ public class ArrayStorage {
     }
 
     // dedicated method to check input uuid
-    boolean isUuidOk(String uuid) {
+    private boolean isUuidValid(String uuid) {
         if (uuid == null || "".equals(uuid)) {
             System.out.println("Please input uuid ");
             return false;
