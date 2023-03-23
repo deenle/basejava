@@ -33,7 +33,7 @@ public class ArrayStorage {
                 return storage[i];
             }
         }
-        System.out.printf("Current uuid: '%s' did not found \n", uuid);
+        System.out.printf("uuid '%s' not found \n", uuid);
         return null;
     }
 
@@ -52,7 +52,7 @@ public class ArrayStorage {
                     return;
                 }
             }
-            System.out.printf("Current uuid: '%s' did not found and was not deleted \n", uuid);
+            System.out.printf("Current uuid: '%s' not found and was not deleted \n", uuid);
         } else System.out.println("Array is already empty");
     }
 
